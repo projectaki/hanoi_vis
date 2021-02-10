@@ -9,11 +9,20 @@
 }
 
 .container {
-    top: 30%;
-    position: absolute;
-    display: flex;
-    left: 10%;
-    border-bottom: 10px solid black;
+    margin-top: 30px;
+}
+
+.th {
+    height: 300px;
+}
+
+.row {
+    margin: 0 !important;
+}
+
+.tcontainer {
+    
+    border-bottom: 5px solid black;
 }
 
 .towercont {

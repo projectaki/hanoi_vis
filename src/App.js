@@ -1,10 +1,13 @@
 import Hanoi from "./FrontEnd/hanoi.jsx";
-
+import Navbar from './FrontEnd/Navbar';
 function App() {
   return (
-    <Hanoi>
-      
-    </Hanoi>
+    <>
+      <Navbar/>
+      <Hanoi/>
+
+    </>
+    
   );
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "hanoi",
-  "homepage": "http://projectaki.github.io/hanoi",
+  "homepage": "http://projectaki.github.io/hanoi_vis",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

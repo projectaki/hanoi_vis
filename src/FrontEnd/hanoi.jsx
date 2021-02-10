@@ -76,26 +76,80 @@ export default class Hanoi extends React.Component {
         return (
             
             <>
-                
-                <div className="container">
-                    <div className="towercont">
-                        {tower1.map((block, id) => {
-                            return <div key={id} className="emptyblock" style={{width: `${block * 20}px`, height: `10px`}}></div>
-                        })}
+                <div>
+                    <div className="tcontainer">
+                        <div class="row">
+
+                            <div class="col s4">
+                                <div className="towercont">
+                                    {tower1.map((block, id) => {
+                                        return <div key={id} className="emptyblock" style={{width: `${block * 20}px`, height: `10px`}}></div>
+                                    })}
+                                </div>
+                            </div>
+                            <div class="col s4">
+                                <div className="towercont">
+                                    {tower1.map((block, id) => {
+                                        return <div key={id} className="emptyblock" style={{width: `${block * 20}px`, height: `10px`}}></div>
+                                    })}
+                                </div>
+                            </div>
+                            <div class="col s4">
+                                <div className="towercont">
+                                    {tower1.map((block, id) => {
+                                        return <div key={id} className="emptyblock" style={{width: `${block * 20}px`, height: `10px`}}></div>
+                                    })}
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        
+                        
                     </div>
-                    <div className="towercont">
-                        {tower1.map((block, id) => {
-                            return <div key={id} className="emptyblock" style={{width: `${block * 20}px`, height: `10px`}}></div>
-                        })}
+                    <div className="container">
+                    <div class="row">
+
+                        <div class="col s6">
+                            <div >
+                                <center>
+                                    <button className="waves-effect waves-light btn" onClick={() => this.setUpDisks(7)}>setup</button>
+                                </center>
+                            
+                            </div>
+                        </div>
+                        <div class="col s6">
+                            <div >
+                                <center>
+                                    <button className="waves-effect waves-light btn" onClick={() => this.runPuzzle()}>Solve</button>
+                                </center>
+                            
+                            </div>
+                        </div>
+
+
                     </div>
-                    <div className="towercont">
-                        {tower1.map((block, id) => {
-                            return <div key={id} className="emptyblock" style={{width: `${block * 20}px`, height: `10px`}}></div>
-                        })}
+                        
+                        
+                    </div>
+                    <div className="container">
+                    <div class="row">
+                        <div class="col s12 m12">
+                        <div class="card brown ">
+                            <div class="card-content white-text">
+                            <span class="card-title">Instruction</span>
+                            <p>The setup button sets up the disks. The solve button then solves the puzzle! As of now you have to refresh the page
+                                if you want to reset.(still buggy)
+                            </p>
+                            </div>
+                            
+                        </div>
+                        </div>
+                    </div>
                     </div>
                 </div>
-                <button onClick={() => this.setUpDisks(7)}>setup</button>
-                <button onClick={() => this.runPuzzle()}>Solve</button>
+                
+                
 
                 
                 
