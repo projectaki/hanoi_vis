@@ -11,41 +11,80 @@ export default class Hanoi extends React.Component {
 
         this.state = {
             tower1 : [],
-
-        
+            terminate : true,
+            running: false,
+            
         };
     }
 
     componentDidMount() {
         this.refresh();
-        
     }
 
     refresh() {
+        // tower1 is array with disk lengths
         const tower1 = createDisks(DISK_NUMBER);
         this.setState({tower1});
-
     }
 
-    setUpDisks(n) {
+    resetBoardLengths() {
+        const elems = document.getElementsByClassName("emptyblock");
+        for(let i = 0; i < elems.length; i++) {
+            var wide = this.state.tower1[i % DISK_NUMBER];
+            elems[i].style.width = wide +"vw";
+        }
+    }
+
+    clearBoard() {
+        this.setState({terminate:true});
+        this.resetBoardLengths();
+        const elems = document.getElementsByClassName("emptyblock");
+        for(let i = 0; i < elems.length; i++) {
+            
+            elems[i].style.backgroundColor = "grey";
+            elems[i].style.margin = "auto";
+            elems[i].style.boxShadow = "0 0 0 0px black";
+        }
+        
+    }
+
+    async setUpDisks() {
+        this.setState({running: false});
+        this.clearBoard();
+        await delay(1);
+        
         const elems = document.getElementsByClassName("emptyblock");
         for(let i = 0; i < DISK_NUMBER; i++) {
             console.log(elems[i]);
             elems[i].style.backgroundColor = "brown";
             elems[i].style.margin = "auto";
-            elems[i].style.boxShadow = "0 0 0 2px black";
+            elems[i].style.boxShadow = "0 0 0 0.1vw black";
+        }
+    }
+
+    async solve() {
+        if (this.state.running === false) {
+            this.setState({running: true});
+            this.runPuzzle();
         }
     }
 
     async runPuzzle() {
+        
+        this.setState({terminate:false});
+        await delay(1);
         const elems = document.getElementsByClassName("emptyblock");
         let t1h = DISK_NUMBER;
         let t2h = 0;
         let t3h = 0;
         const moves = hanoi(DISK_NUMBER);
-        console.log(moves);
+        
         for (let i = 0; i < moves.length; i++) {
-            console.log(t1h, t2h, t3h);
+            if(this.state.terminate === true) {
+                this.setState({running: false});
+                return;
+            }
+            
             const pair = moves[i];
             
             const from =  getBlockId(pair[0],DISK_NUMBER,t1h,t2h,t3h);
@@ -78,26 +117,26 @@ export default class Hanoi extends React.Component {
             <>
                 <div>
                     <div className="tcontainer">
-                        <div class="row">
+                        <div class="row" style={{paddingTop: "10vh"}}>
 
                             <div class="col s4">
                                 <div className="towercont">
                                     {tower1.map((block, id) => {
-                                        return <div key={id} className="emptyblock" style={{width: `${block * 20}px`, height: `10px`}}></div>
+                                        return <div key={id} className="emptyblock" style={{width: `${block }vw`, height: `3vh`}}></div>
                                     })}
                                 </div>
                             </div>
                             <div class="col s4">
                                 <div className="towercont">
                                     {tower1.map((block, id) => {
-                                        return <div key={id} className="emptyblock" style={{width: `${block * 20}px`, height: `10px`}}></div>
+                                        return <div key={id} className="emptyblock" style={{width: `${block}vw`, height: `3vh`}}></div>
                                     })}
                                 </div>
                             </div>
                             <div class="col s4">
                                 <div className="towercont">
                                     {tower1.map((block, id) => {
-                                        return <div key={id} className="emptyblock" style={{width: `${block * 20}px`, height: `10px`}}></div>
+                                        return <div key={id} className="emptyblock" style={{width: `${block}vw`, height: `3vh`}}></div>
                                     })}
                                 </div>
                             </div>
@@ -110,7 +149,7 @@ export default class Hanoi extends React.Component {
                     <div className="container">
                     <div class="row">
 
-                        <div class="col s6">
+                        <div class="col s4">
                             <div >
                                 <center>
                                     <button className="waves-effect waves-light btn" onClick={() => this.setUpDisks(7)}>setup</button>
@@ -118,11 +157,20 @@ export default class Hanoi extends React.Component {
                             
                             </div>
                         </div>
-                        <div class="col s6">
+                        <div class="col s4">
                             <div >
                                 <center>
-                                    <button className="waves-effect waves-light btn" onClick={() => this.runPuzzle()}>Solve</button>
+                                    <button className="waves-effect waves-light btn" onClick={() => this.solve()}>Solve</button>
                                 </center>
+                            
+                            </div>
+                        </div>
+                        <div class="col s4">
+                            <div >
+                                <center>
+                                    <button className="waves-effect waves-light btn" onClick={() => this.clearBoard()}>clear</button>
+                                </center>
+                                
                             
                             </div>
                         </div>
@@ -135,11 +183,18 @@ export default class Hanoi extends React.Component {
                     <div className="container">
                     <div class="row">
                         <div class="col s12 m12">
-                        <div class="card brown ">
+                        <div class="card blue-grey ">
                             <div class="card-content white-text">
-                            <span class="card-title">Instruction</span>
-                            <p>The setup button sets up the disks. The solve button then solves the puzzle! As of now you have to refresh the page
-                                if you want to reset.(still buggy)
+                            <h4 class="resp-head">Towers of Hanoi Puzzle Description</h4>
+                            <p>The Tower of Hanoi (also called the Tower of Brahma or Lucas' Tower[1] and sometimes pluralized as Towers) is a mathematical game or puzzle. It consists of three rods and a number of disks of different sizes, which can slide onto any rod. The puzzle starts with the disks in a neat stack in ascending order of size on one rod, the smallest at the top, thus making a conical shape.
+
+                                The objective of the puzzle is to move the entire stack to another rod, obeying the following simple rules:
+
+                                Only one disk can be moved at a time.
+                                Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty rod.
+                                No larger disk may be placed on top of a smaller disk.
+                                
+                                <p className="right">-Wikipedia</p>
                             </p>
                             </div>
                             
@@ -173,7 +228,7 @@ function getBlockId(tower, n, t1, t2, t3) {
 function createDisks(numberOfDisks) {
     const disks = [];
     for (let i = 0; i < numberOfDisks; i++) {
-        disks.push(i + 2);
+        disks.push(i*3 + 3);
     }
     return disks;
 }
@@ -185,7 +240,7 @@ function shiftDisk(style1, style2) {
         style2.backgroundColor = style1.backgroundColor;
         style2.margin = style1.margin;
         style2.boxShadow = style1.boxShadow;
-        style1.backgroundColor = "white";
+        style1.backgroundColor = "grey";
         style1.boxShadow = "0 0 0 0px black";
 }
 
@@ -193,8 +248,13 @@ function shiftDisk(style1, style2) {
 function delay(n) {  
     n = n || 2000;
     return new Promise(done => {
-      setTimeout(() => {
+       setTimeout(() => {
         done();
+        
       }, n);
     });
   }
+
+// function clearDelay(tim) {
+//     clearTimeout(tim);
+// }
