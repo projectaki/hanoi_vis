@@ -41,7 +41,7 @@ export default class Hanoi extends React.Component {
         const elems = document.getElementsByClassName("emptyblock");
         for(let i = 0; i < elems.length; i++) {
             
-            elems[i].style.backgroundColor = "grey";
+            elems[i].style.backgroundColor = "black";
             elems[i].style.margin = "auto";
             elems[i].style.boxShadow = "0 0 0 0px black";
         }
@@ -240,7 +240,7 @@ function shiftDisk(style1, style2) {
         style2.backgroundColor = style1.backgroundColor;
         style2.margin = style1.margin;
         style2.boxShadow = style1.boxShadow;
-        style1.backgroundColor = "grey";
+        style1.backgroundColor = "black";
         style1.boxShadow = "0 0 0 0px black";
 }
 

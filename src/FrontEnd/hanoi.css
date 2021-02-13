@@ -9,12 +9,10 @@
 }
 
 .container {
-    margin-top: 30px;
+    margin-top: 5vh;
 }
 
-.th {
-    height: 300px;
-}
+
 
 .row {
     margin: 0 !important;
@@ -22,7 +20,7 @@
 
 .tcontainer {
     
-    border-bottom: 1vh solid black;
+    border-bottom: 1vh solid white;
 }
 
 p {
@@ -41,4 +39,8 @@ p {
     height: 3vw;
     font-size: 1vw;
     text-align: center;
+}
+
+body {
+    background-color: black;
 }

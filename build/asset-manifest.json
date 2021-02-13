@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/hanoi_vis/static/css/main.a82d8687.chunk.css",
-    "main.js": "/hanoi_vis/static/js/main.5416402d.chunk.js",
-    "main.js.map": "/hanoi_vis/static/js/main.5416402d.chunk.js.map",
+    "main.css": "/hanoi_vis/static/css/main.27382e00.chunk.css",
+    "main.js": "/hanoi_vis/static/js/main.b1553b72.chunk.js",
+    "main.js.map": "/hanoi_vis/static/js/main.b1553b72.chunk.js.map",
     "runtime-main.js": "/hanoi_vis/static/js/runtime-main.f97cd73c.js",
     "runtime-main.js.map": "/hanoi_vis/static/js/runtime-main.f97cd73c.js.map",
     "static/js/2.189dae96.chunk.js": "/hanoi_vis/static/js/2.189dae96.chunk.js",
@@ -10,13 +10,13 @@
     "static/js/3.d0dc3350.chunk.js": "/hanoi_vis/static/js/3.d0dc3350.chunk.js",
     "static/js/3.d0dc3350.chunk.js.map": "/hanoi_vis/static/js/3.d0dc3350.chunk.js.map",
     "index.html": "/hanoi_vis/index.html",
-    "static/css/main.a82d8687.chunk.css.map": "/hanoi_vis/static/css/main.a82d8687.chunk.css.map",
+    "static/css/main.27382e00.chunk.css.map": "/hanoi_vis/static/css/main.27382e00.chunk.css.map",
     "static/js/2.189dae96.chunk.js.LICENSE.txt": "/hanoi_vis/static/js/2.189dae96.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.f97cd73c.js",
     "static/js/2.189dae96.chunk.js",
-    "static/css/main.a82d8687.chunk.css",
-    "static/js/main.5416402d.chunk.js"
+    "static/css/main.27382e00.chunk.css",
+    "static/js/main.b1553b72.chunk.js"
   ]
 }
