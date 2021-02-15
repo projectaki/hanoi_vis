@@ -26,6 +26,7 @@
 
 p {
     font-size: 1.5vw;
+    margin: 0;
 }
 
 .resp-head {
@@ -35,14 +36,25 @@ p {
     
 }
 
-.btn {
-    width: 8vw;
-    height: 3vw;
-    font-size: 1vw;
-    text-align: center;
-}
+
 
 body {
     background-color: black;
 }
 
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-item {
+    height: 100%;
+}
+
+.btn {
+    height: 100%;
+    width: 10vw;
+    display: block;
+    margin: auto;
+    padding: 0;
+}

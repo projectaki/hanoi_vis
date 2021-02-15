@@ -128,11 +128,11 @@ export default class Hanoi extends React.Component {
             <>
                 <div>
                     <div className="container" style={{textAlign: "center"}}>
-                    <label htmlFor="diskRange" class="form-label" style={{fontSize: "1.5vw"}}>Number of discs</label>
+                    <label htmlFor="diskRange" class="form-label" style={{fontSize: "2vw"}}>Number of discs</label>
                     <input value={this.state.input} onChange={evt => this.updateInput(evt)} type="range" class="form-range" min="1" max="8" step="1" id="diskRange"
                     style={{height: "3vh"}}
                     />
-                    <div className="white-text">
+                    <div className="white-text" style={{fontSize: "2vw"}}>
                         {this.state.input}
                     </div>
                     </div>
@@ -142,21 +142,21 @@ export default class Hanoi extends React.Component {
                             <div class="col s4">
                                 <div className="towercont">
                                     {tower1.map((block, id) => {
-                                        return <div key={id} className="emptyblock" style={{width: `${block }vw`, height: `3vh`}}></div>
+                                        return <div key={id} className="emptyblock" style={{width: `${block }vw`, height: `2vw`}}></div>
                                     })}
                                 </div>
                             </div>
                             <div class="col s4">
                                 <div className="towercont">
                                     {tower1.map((block, id) => {
-                                        return <div key={id} className="emptyblock" style={{width: `${block}vw`, height: `3vh`}}></div>
+                                        return <div key={id} className="emptyblock" style={{width: `${block}vw`, height: `2vw`}}></div>
                                     })}
                                 </div>
                             </div>
                             <div class="col s4">
                                 <div className="towercont">
                                     {tower1.map((block, id) => {
-                                        return <div key={id} className="emptyblock" style={{width: `${block}vw`, height: `3vh`}}></div>
+                                        return <div key={id} className="emptyblock" style={{width: `${block}vw`, height: `2vw`}}></div>
                                     })}
                                 </div>
                             </div>
@@ -166,37 +166,19 @@ export default class Hanoi extends React.Component {
                         
                         
                     </div>
-                    <div className="container">
-                    <div class="row">
-
-                        
-                        <div class="col s4">
-                            <div >
-                                <center>
-                                    <button className="waves-effect waves-light btn" onClick={() => this.solve()}>Solve</button>
-                                </center>
-                            
-                            </div>
-                        </div>
-                        <div class="col s4">
-                            <div >
-                                <center>
-                                    <button className="waves-effect waves-light btn" onClick={() => this.clearBoard()}>clear</button>
-                                </center>
+                    <div className="container" style={{marginTop: "3vh"}}>
+                    <div class="grid-container">
+                            <div className="grid-item">
                                 
-                            
+                                <button className="waves-effect waves-light btn" onClick={() => this.solve()}>
+                                    <label className="white-text" style={{fontSize: "1vw"}}>solve</label>
+                                </button>
                             </div>
-                        </div>
-                        <div class="col s4">
-                            <div >
-                                <center>
-                                    <button className="waves-effect waves-light btn" onClick={() => this.setUpDisks()}>setup</button>
-                                </center>
-                                
-                            
+                            <div className="grid-item">
+                                <button className="waves-effect waves-light btn" onClick={() => this.setUpDisks()}>
+                                    <label className="white-text" style={{fontSize: "1vw"}}>reset</label>
+                                </button>
                             </div>
-                        </div>
-
 
                     </div>
                         
