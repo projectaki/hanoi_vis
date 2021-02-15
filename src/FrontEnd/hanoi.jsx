@@ -27,12 +27,17 @@ export default class Hanoi extends React.Component {
         const tower1 = createDisks(this.state.input);
         this.setState({tower1});
     }
+
+    // terminate the running loop and reset
     async reset() {
+        this.setState({terminate:true});
+        await delay(1);
         this.refresh();
         await delay(1);
         this.setUpDisks();
     }
 
+    // reset div lengths
     resetBoardLengths() {
         const elems = document.getElementsByClassName("emptyblock");
         for(let i = 0; i < elems.length; i++) {
@@ -41,8 +46,8 @@ export default class Hanoi extends React.Component {
         }
     }
 
+    // empty the board of colors
     clearBoard() {
-        this.setState({terminate:true});
         this.resetBoardLengths();
         const elems = document.getElementsByClassName("emptyblock");
         for(let i = 0; i < elems.length; i++) {
@@ -54,8 +59,9 @@ export default class Hanoi extends React.Component {
         
     }
 
+    // set up the discs
     async setUpDisks() {
-        this.setState({running: false});
+        //this.setState({running: false});
         this.clearBoard();
         await delay(1);
         
@@ -68,8 +74,11 @@ export default class Hanoi extends React.Component {
         }
     }
 
+    // if no functiuon is running then run the function
     async solve() {
+        
         if (this.state.running === false) {
+            
             this.setState({running: true});
             this.runPuzzle();
         }
@@ -111,8 +120,8 @@ export default class Hanoi extends React.Component {
     
         }
         
-        
-        
+        await delay(1);
+        this.setState({running: false});
         
     }
 
