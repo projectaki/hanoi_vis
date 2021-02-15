@@ -27,6 +27,11 @@ export default class Hanoi extends React.Component {
         const tower1 = createDisks(this.state.input);
         this.setState({tower1});
     }
+    async reset() {
+        this.refresh();
+        await delay(1);
+        this.setUpDisks();
+    }
 
     resetBoardLengths() {
         const elems = document.getElementsByClassName("emptyblock");
@@ -175,7 +180,7 @@ export default class Hanoi extends React.Component {
                                 </button>
                             </div>
                             <div className="grid-item">
-                                <button className="waves-effect waves-light btn" onClick={() => this.setUpDisks()}>
+                                <button className="waves-effect waves-light btn" onClick={() => this.reset()}>
                                     <label className="white-text" style={{fontSize: "1vw"}}>reset</label>
                                 </button>
                             </div>
