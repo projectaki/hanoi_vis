@@ -3,7 +3,6 @@ import { hanoi } from "../BackEnd/algorithm";
 
 import "./hanoi.css";
 
-const DISK_NUMBER = 5;
 
 export default class Hanoi extends React.Component {
     constructor(props) {
@@ -13,24 +12,26 @@ export default class Hanoi extends React.Component {
             tower1 : [],
             terminate : true,
             running: false,
+            input: 3,
             
         };
     }
 
     componentDidMount() {
         this.refresh();
+        this.setUpDisks();
     }
 
     refresh() {
         // tower1 is array with disk lengths
-        const tower1 = createDisks(DISK_NUMBER);
+        const tower1 = createDisks(this.state.input);
         this.setState({tower1});
     }
 
     resetBoardLengths() {
         const elems = document.getElementsByClassName("emptyblock");
         for(let i = 0; i < elems.length; i++) {
-            var wide = this.state.tower1[i % DISK_NUMBER];
+            var wide = this.state.tower1[i % this.state.input];
             elems[i].style.width = wide +"vw";
         }
     }
@@ -54,8 +55,8 @@ export default class Hanoi extends React.Component {
         await delay(1);
         
         const elems = document.getElementsByClassName("emptyblock");
-        for(let i = 0; i < DISK_NUMBER; i++) {
-            console.log(elems[i]);
+        for(let i = 0; i < this.state.input; i++) {
+            
             elems[i].style.backgroundColor = "brown";
             elems[i].style.margin = "auto";
             elems[i].style.boxShadow = "0 0 0 0.1vw black";
@@ -74,10 +75,11 @@ export default class Hanoi extends React.Component {
         this.setState({terminate:false});
         await delay(1);
         const elems = document.getElementsByClassName("emptyblock");
-        let t1h = DISK_NUMBER;
+        let t1h = this.state.input;
         let t2h = 0;
         let t3h = 0;
-        const moves = hanoi(DISK_NUMBER);
+        const moves = hanoi(this.state.input);
+        
         
         for (let i = 0; i < moves.length; i++) {
             if(this.state.terminate === true) {
@@ -87,8 +89,8 @@ export default class Hanoi extends React.Component {
             
             const pair = moves[i];
             
-            const from =  getBlockId(pair[0],DISK_NUMBER,t1h,t2h,t3h);
-            const to =  getBlockId(pair[1],DISK_NUMBER,t1h,t2h,t3h) - 1;
+            const from =  getBlockId(pair[0],this.state.input,t1h,t2h,t3h);
+            const to =  getBlockId(pair[1],this.state.input,t1h,t2h,t3h) - 1;
             let style1 = elems[from].style;
             let style2 = elems[to].style;
             shiftDisk(style1,style2);
@@ -109,6 +111,15 @@ export default class Hanoi extends React.Component {
         
     }
 
+    async updateInput(evt) {
+        this.setState({input: evt.target.value});
+        await delay(1);
+        this.refresh();
+        this.clearBoard();
+        this.render();
+        this.setUpDisks();
+    }
+
     render() {
         const {tower1} = this.state;
         
@@ -116,6 +127,15 @@ export default class Hanoi extends React.Component {
             
             <>
                 <div>
+                    <div className="container" style={{textAlign: "center"}}>
+                    <label htmlFor="diskRange" class="form-label" style={{fontSize: "1.5vw"}}>Number of discs</label>
+                    <input value={this.state.input} onChange={evt => this.updateInput(evt)} type="range" class="form-range" min="1" max="8" step="1" id="diskRange"
+                    style={{height: "3vh"}}
+                    />
+                    <div className="white-text">
+                        {this.state.input}
+                    </div>
+                    </div>
                     <div className="tcontainer">
                         <div class="row" style={{paddingTop: "10vh"}}>
 
@@ -149,14 +169,7 @@ export default class Hanoi extends React.Component {
                     <div className="container">
                     <div class="row">
 
-                        <div class="col s4">
-                            <div >
-                                <center>
-                                    <button className="waves-effect waves-light btn" onClick={() => this.setUpDisks(7)}>setup</button>
-                                </center>
-                            
-                            </div>
-                        </div>
+                        
                         <div class="col s4">
                             <div >
                                 <center>
@@ -169,6 +182,15 @@ export default class Hanoi extends React.Component {
                             <div >
                                 <center>
                                     <button className="waves-effect waves-light btn" onClick={() => this.clearBoard()}>clear</button>
+                                </center>
+                                
+                            
+                            </div>
+                        </div>
+                        <div class="col s4">
+                            <div >
+                                <center>
+                                    <button className="waves-effect waves-light btn" onClick={() => this.setUpDisks()}>setup</button>
                                 </center>
                                 
                             

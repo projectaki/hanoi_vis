@@ -6,13 +6,15 @@ export const hanoi = (n) => {
 
 export const hanoiRecurse = (n, from, buffer, to, moves) => {
     
-    if (n === 1) {
+    if (n <= 1) {
         moves.push([from, to]);
-        return;
-    }
+        return moves;
+    }   
     hanoiRecurse(n-1, from, to, buffer, moves);
     moves.push([from, to]);
     hanoiRecurse(n-1, buffer, from, to, moves);
     return moves;
+    
+    
 
 }
