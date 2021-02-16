@@ -13,6 +13,7 @@ export default class Hanoi extends React.Component {
             terminate : true,
             running: false,
             input: 3,
+            setup: false
             
         };
     }
@@ -35,6 +36,7 @@ export default class Hanoi extends React.Component {
         this.refresh();
         await delay(1);
         this.setUpDisks();
+        this.setState({setup: true});
     }
 
     // reset div lengths
@@ -77,9 +79,9 @@ export default class Hanoi extends React.Component {
     // if no functiuon is running then run the function
     async solve() {
         
-        if (this.state.running === false) {
+        if (this.state.running === false && this.state.setup === true) {
             
-            this.setState({running: true});
+            this.setState({running: true, setup: false});
             this.runPuzzle();
         }
     }
@@ -128,10 +130,7 @@ export default class Hanoi extends React.Component {
     async updateInput(evt) {
         this.setState({input: evt.target.value});
         await delay(1);
-        this.refresh();
-        this.clearBoard();
-        this.render();
-        this.setUpDisks();
+        this.reset();
     }
 
     render() {
