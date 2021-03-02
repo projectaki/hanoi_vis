@@ -1,6 +1,6 @@
 .block {
     background-color: brown;
-    box-shadow: 0 0 0 2px black;
+    box-shadow: 0 0 0 4px black;
     margin: auto;
 }
 
@@ -51,10 +51,46 @@ body {
     height: 100%;
 }
 
-.btn {
-    height: 100%;
-    width: 10vw;
-    display: block;
-    margin: auto;
-    padding: 0;
+@media screen and (max-width: 500px) {
+    
+}
+
+.navbar {
+    height: 7vmin;
+    width: 100vw;
+    background-color: rgb(55,181,255);
+    text-align: center;
+    top: 0;
+}
+
+.back-btn {
+    top: 1.5vmin;
+    left: 1.5vmin;
+    font-size: 2vmin;
+}
+
+@font-face {
+font-family: League Spartan;
+src: url("../fonts/LeagueSpartan-Bold.otf");
+}
+
+@font-face {
+font-family: Alegreya Sans;
+src: url("../fonts/AlegreyaSans-Regular.ttf");
+}
+
+button {
+    margin-left: 2vmin;
+    margin-right: 2vmin;
+    font-size: 2vmin;
+    padding-left: 2vmin;
+    padding-right: 2vmin;
+    padding-top: 1vmin;
+    padding-bottom: 1vmin;
+    border-radius: 1vmin;
+    background-color: rgb(55,181,255);
+    color: white;
+    font-family: Alegreya sans;
+    height: 5vmin;
+    width: 10vmin;
 }
